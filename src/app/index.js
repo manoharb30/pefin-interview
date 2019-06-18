@@ -37,24 +37,8 @@ const main = () => {
       <App />
     </Provider> , document.getElementById('app-root')
     )
-  // store.subscribe(() => {
-  //   const {message } = store.getState();
-  //   debugger;
-  //   switch(message.actions.type){
-  //     case actions.SEND_MESSAGE :
-  //       return socket.emit(message.action.text);
-  //     default:
-  //       return;
-  //   }
-  // })
 
-  const example = (socket) => {
-    socket.emit('message', 'hello world')
-    socket.on('message', msg => {
-      console.log('Received message: ', msg)
-    })
-  }
-  // example(socket);
+  
 }
 
 main()

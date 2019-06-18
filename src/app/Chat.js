@@ -24,6 +24,7 @@ class Chat extends Component {
     handleFormSubmit(e) {
         e.preventDefault();
         let text = this.refs.messageText.value;
+        this.refs.messageText.value = '';
         console.log('props ',this.props)
         this.props.actions.send(text);
     }
@@ -40,7 +41,10 @@ class Chat extends Component {
                <form onSubmit = {this.handleFormSubmit}>
                     <div className = "form-group">
                         <div className = "input-group">
-                            <input type ="text" ref="messageText" className = "form-control" />
+                            <input type ="text" 
+                               placeholder = "Type your message here ..."
+                               ref="messageText" 
+                               className = "form-control" />
                             <span className="input-group-btn">
                                 <button type = "submit" className = "btn btn-primary">Send</button>
                             </span>
