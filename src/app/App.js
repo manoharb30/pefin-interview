@@ -1,41 +1,72 @@
 import React from 'react'
+import Chat from './Chat'
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      draft: ''
-    }
-    this.updateDraft = this.updateDraft.bind(this)
-    this.send = this.send.bind(this)
-  }
+import * as ChatActions from './actions';
 
-  updateDraft (event) {
-    this.setState({ draft: event.target.value })
-  }
+function mapStateToProps(state){
+  return {
+    messages:state.messages
+  };
+}
 
-  send (event) {
-    event.preventDefault()
-    console.log(this.state.draft)
-    this.props.socket.emit('message', this.state.draft)
-  }
-
-  render () {
-    return (
-      <div>
-        <ul className='messages'>
-          <li>message 1</li>
-          <li>message 2</li>
-          <li>message 3</li>
-          <li>message 4</li>
-        </ul>
-        <form>
-          <input className='m' autoComplete='off' value={this.state.draft} onChange={this.updateDraft} />
-          <button onClick={this.send}>Send</button>
-        </form>
-      </div>
-    )
+function mapDispatchToProps(dispatch){
+  return{
+    actions:bindActionCreators(ChatActions,dispatch)
   }
 }
 
-export default App
+class App extends React.Component {
+  // constructor(props) {
+  //   super(props)
+  //   console.log(props);
+  //   this.state = {
+  //     messages: []
+  //   }
+  //   this.handleFormSubmit = this.handleFormSubmit.bind(this)
+  //   this.send = this.send.bind(this)
+  // }
+
+  // handleFormSubmit (event) {
+
+  //  event.preventDefault();
+  //  console.log(this.refs.messageText.value)
+  //   this.setState({ messages : [...this.state.messages, this.refs.messageText.value ] });
+  //   console.log(this.state);
+  //   this.props.socket.emit('message', this.refs.messageText.value);
+  // }
+
+  // send (event) {
+  //   event.preventDefault()
+  //   console.log(this.state.draft)
+  //   this.props.socket.emit('message', this.state.draft)
+  // }
+
+  render () {
+    console.log('props is ',this.props);
+    // let i = 0,
+    //       messages = this.state.messages.map(message => {
+    //         return <li className = "list-group-item" key = {i++}>{message}</li>
+    //       })
+    // return (
+    //         <div className = "container">
+    //            <form onSubmit = {this.handleFormSubmit}>
+    //                 <div className = "form-group">
+    //                     <div className = "input-group">
+    //                         <input type ="text" ref="messageText" className = "form-control" />
+    //                         <span className="input-group-btn">
+    //                             <button type = "submit" className = "btn btn-primary">Send</button>
+    //                         </span>
+    //                     </div>
+    //                 </div>
+    //            </form>
+    //            <div className = "list-group" >{messages}</div>
+    //         </div>
+      return (<div>
+        <Chat />
+      </div>)
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

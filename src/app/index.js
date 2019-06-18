@@ -4,6 +4,17 @@ import React from 'react'
 import { render } from 'react-dom'
 import App from './App'
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+import reducers from './reducers';
+import * as actions from './actions';
+
+
+const store = createStore(
+  reducers
+)
+
 // See this function for an example of how to send messages and how to
 // subscribe and listen for messages
 const example = (socket) => {
@@ -15,13 +26,35 @@ const example = (socket) => {
 
 const main = () => {
   const socket = io('localhost:9001')
-  const store = makeStore()
+  // const store = makeStore()
 
-  const app = (
-    <App socket={socket} />
-  )
+  // const app = (
+  //   <App socket={socket} />
+  // )
 
-  render(app, document.getElementById('app-root'))
+  render(
+    <Provider store =  {store}>
+      <App />
+    </Provider> , document.getElementById('app-root')
+    )
+  // store.subscribe(() => {
+  //   const {message } = store.getState();
+  //   debugger;
+  //   switch(message.actions.type){
+  //     case actions.SEND_MESSAGE :
+  //       return socket.emit(message.action.text);
+  //     default:
+  //       return;
+  //   }
+  // })
+
+  const example = (socket) => {
+    socket.emit('message', 'hello world')
+    socket.on('message', msg => {
+      console.log('Received message: ', msg)
+    })
+  }
+  // example(socket);
 }
 
 main()
