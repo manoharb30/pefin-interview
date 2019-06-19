@@ -25,17 +25,15 @@ class Chat extends Component {
         e.preventDefault();
         let text = this.refs.messageText.value;
         this.refs.messageText.value = '';
-        console.log('props ',this.props)
+        this.props.example(this.props.socket);
         this.props.actions.send(text);
     }
 
     render() {
-        if(this.props.messages != undefined ){
         var i = 0,
           messages = this.props.messages.map(message => {
             return <li className = "list-group-item" key = {i++}>{message}</li>
           })
-        }
         return (
             <div className = "container">
                <form onSubmit = {this.handleFormSubmit}>

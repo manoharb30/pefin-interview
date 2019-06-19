@@ -18,12 +18,10 @@ function mapDispatchToProps(dispatch){
 }
 
 class App extends React.Component {
-
-
-  render () {
-    
-      return (<div>
-        <Chat />
+ render (props) {
+      return (
+      <div>
+        <Chat example = {this.props.example} socket = {this.props.socket}/>
       </div>)
   }
 }

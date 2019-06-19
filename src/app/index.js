@@ -31,10 +31,9 @@ const main = () => {
   // const app = (
   //   <App socket={socket} />
   // )
-
   render(
     <Provider store =  {store}>
-      <App />
+      <App example = {example }  socket = {socket}/>
     </Provider> , document.getElementById('app-root')
     )
 
