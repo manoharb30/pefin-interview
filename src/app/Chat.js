@@ -31,7 +31,10 @@ class Chat extends Component {
     render() {
         var i = 0,
           messages = this.props.messages.map(message => {
-            return <li className = "list-group-item" key = {i++}>{message}</li>
+            return  <li className = "list-group-item" key = {i++}>
+                        {message} 
+                     <pre> <h6> Message sent at </h6> {(new Date).toLocaleTimeString()} </pre>
+                    </li>
           })
         return (
             <div className = "container">
