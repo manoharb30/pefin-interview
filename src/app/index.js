@@ -27,7 +27,7 @@ const example = (socket) => {
 
 const main = () => {
   const socket = io('localhost:9001');
-  example(socket,store);
+  example(socket);
   // const store = makeStore()
 
   // const app = (

@@ -21,7 +21,7 @@ class App extends React.Component {
  render (props) {
       return (
       <div>
-        <Chat example = {this.props.example} socket = {this.props.socket}/>
+        <Chat socket = {this.props.socket}/>
       </div>)
   }
 }
