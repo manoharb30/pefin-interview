@@ -1,5 +1,5 @@
-import { RECEIVE_MESSAGE, SEND_MESSAGE  } from '../actions';
 import {combineReducers } from 'redux';
+import { RECEIVE_MESSAGE, SEND_MESSAGE  } from '../actions';
 
 const initialState = {
     messages : [],
@@ -12,6 +12,7 @@ const initialState = {
         case RECEIVE_MESSAGE:
             return {
                 ...state,
+                messages : [...state.messages, action.text],
                 action:action
             }
         case SEND_MESSAGE:

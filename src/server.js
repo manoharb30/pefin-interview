@@ -26,13 +26,9 @@ const main = async () => {
     // echo the message back
     connection.on('message', msg => {
       console.log('message: ' + msg)
-      connection.emit('message', msg)
+      connection.broadcast.emit('message', msg)
     })
 
-    const interval = setInterval(() => {
-      const time = new Date().toISOString()
-      connection.emit('message', `The time is ${time}`)
-    }, 5000)
   })
 
   server.listen(9001, () => {

@@ -20,12 +20,14 @@ const store = createStore(
 const example = (socket) => {
   socket.emit('message', 'hello world')
   socket.on('message', msg => {
-    console.log('Received message: ', msg)
+    // console.log('Received message: ', msg);
+    store.dispatch({type:'RECEIVE_MESSAGE',text:msg})
   })
 }
 
 const main = () => {
-  const socket = io('localhost:9001')
+  const socket = io('localhost:9001');
+  example(socket,store);
   // const store = makeStore()
 
   // const app = (
@@ -36,8 +38,6 @@ const main = () => {
       <App example = {example }  socket = {socket}/>
     </Provider> , document.getElementById('app-root')
     )
-
-  
 }
 
 main()
