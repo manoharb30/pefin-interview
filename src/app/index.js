@@ -1,41 +1,39 @@
-import io from 'socket.io-client'
-import { makeStore } from './store'
 import React from 'react'
+import io from 'socket.io-client'
 import { render } from 'react-dom'
-import App from './App'
-
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
+import App from './App'
 import reducers from './reducers';
 import * as actions from './actions';
 
+const customMiddleware = socket => store => next => action => {
+  if(action.type === 'SEND_MESSAGE'){
+    socket.emit("message", action.text);
+  }
+    next(action);
 
-const store = createStore(
-  reducers
-)
-
+  
+}
 // See this function for an example of how to send messages and how to
 // subscribe and listen for messages
-const example = (socket) => {
-  socket.emit('message', 'hello world')
-  socket.on('message', msg => {
-    // console.log('Received message: ', msg);
-    store.dispatch({type:'RECEIVE_MESSAGE',text:msg})
-  })
-}
+
+
 
 const main = () => {
+  
   const socket = io('localhost:9001');
-  example(socket);
-  // const store = makeStore()
+  socket.on('message', msg => {
+    store.dispatch({type:'RECEIVE_MESSAGE',text:msg})
+  })
+  const store = createStore(
+    reducers , applyMiddleware(customMiddleware(socket))
+  )
 
-  // const app = (
-  //   <App socket={socket} />
-  // )
   render(
     <Provider store =  {store}>
-      <App example = {example }  socket = {socket}/>
+      <App   socket = {socket}/>
     </Provider> , document.getElementById('app-root')
     )
 }

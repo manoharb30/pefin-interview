@@ -25,7 +25,6 @@ class Chat extends Component {
         e.preventDefault();
         let text = this.refs.messageText.value;
         this.refs.messageText.value = '';
-        this.props.socket.emit("message",text)
         this.props.actions.send(text);
     }
 
