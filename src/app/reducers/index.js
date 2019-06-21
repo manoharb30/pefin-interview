@@ -8,7 +8,6 @@ const initialState = {
 
 // store data
  const  message = (state = initialState , action) => {
-     debugger;
     switch(action.type){
         case RECEIVE_MESSAGE:
             return {
