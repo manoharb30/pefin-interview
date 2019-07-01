@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as ChatActions from './actions';
+import Message from './Message'
 
 function mapStateToProps(state){
-    console.log(state.message.messages);
     return {
       messages:state.message.messages
     };
@@ -29,13 +29,6 @@ class Chat extends Component {
     }
 
     render() {
-        var i = 0,
-          messages = this.props.messages.map(message => {
-            return  <li className = "list-group-item" key = {i++}>
-                        {message} 
-                     <pre> <h6> Message sent at </h6> {(new Date).toLocaleTimeString()} </pre>
-                    </li>
-          })
         return (
             <div className = "container">
                <form onSubmit = {this.handleFormSubmit}>
@@ -51,7 +44,7 @@ class Chat extends Component {
                         </div>
                     </div>
                </form>
-               <div className = "list-group" >{messages}</div>
+               <Message  />
             </div>
         );
     }
