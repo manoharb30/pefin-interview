@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 
 function mapStateToProps(state){
-    console.log(state.message.messages);
     return {
       messages:state.message.messages
     };
