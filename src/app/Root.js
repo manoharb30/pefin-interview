@@ -29,15 +29,7 @@ const store = createStore(
   reducers , applyMiddleware(customMiddleware(socket))
 )
 
-export const makeStore = () => {
-  const store = createStore(reducer)
-  return store
-}
-
 const reducer = (state = initState, action) => {
   return state
 }
 
-const initState = {
-  messages: []
-}
