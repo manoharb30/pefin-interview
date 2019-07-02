@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/server.js",
-    "test": "jest --watch"
+    "test": "jest"
   },
   "jest": {
     "moduleFileExtensions": [
