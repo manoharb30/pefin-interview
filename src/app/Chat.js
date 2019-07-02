@@ -50,4 +50,4 @@ class Chat extends Component {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps) (Chat);
+export default connect(null,mapDispatchToProps) (Chat);

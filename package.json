@@ -6,15 +6,35 @@
   "author": "Alexandros Katechis <alex.katechis@pefin.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test": "jest --watch"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "setupTestFrameworkScriptFile": "./src/app/setupTests.js",
+    "moduleNameMapper": {
+      "^js(.*)$": "<rootDir>/app/javascript/$1",
+      "^vendor(.*)$": "<rootDir>/vendor/$1"
+    }
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/preset-env": "^7.4.5",
     "eslint": "^5.14.1",
     "express": "^4.16.4",
     "parcel-bundler": "^1.11.0",
     "socket.io": "^2.2.0"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.8.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.2",
     "react-redux": "^7.1.0",
