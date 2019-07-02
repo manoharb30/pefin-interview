@@ -4,11 +4,6 @@ import { bindActionCreators } from "redux";
 import * as ChatActions from './actions';
 import Message from './Message'
 
-function mapStateToProps(state){
-    return {
-      messages:state.message.messages
-    };
-  }
   
   function mapDispatchToProps(dispatch){
     return{

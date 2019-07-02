@@ -1,11 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import App from '../App';
 import Chat from '../Chat';
+import Root from '../Root';
 
 let wrapped;
 beforeEach(() => {
-     wrapped = shallow(<App />);
+     wrapped = mount(
+       <Root >
+          <App />
+     </Root>
+     );
 })
 
 it('Shows the chat box ', () => {
