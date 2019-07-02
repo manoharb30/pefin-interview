@@ -6,7 +6,6 @@ import Chat from '../Chat';
 let wrapped;
 beforeEach(() => {
      wrapped = shallow(<App />);
-     console.log(wrapped);
 })
 
 it('Shows the chat box ', () => {
