@@ -13,13 +13,14 @@ const socket = io('localhost:9001');
 export default props => {
   return (
     <Provider store = {store} >
-         {props.children}
+          {props.children}
     </Provider>
   )
 }
 
 const customMiddleware = socket => store => next => action => {
   if(action.type === 'SEND_MESSAGE'){
+    console.log('store ', store);
     socket.emit("message", action.text);
   }
     next(action); 
